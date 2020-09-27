@@ -15,19 +15,11 @@ public class FibonacciMemorization
 		initialize();
 	}
 
-	private int fibonacci(int index)
+	public int fibonacci(int index)
 	{
 		if(!dataStorage.containsKey(index))
 		{
 			int newValue;
-
-			if(index <= 1)
-			{
-				newValue = index;
-				dataStorage.put(index, newValue);
-
-				return newValue;
-			}
 
 			newValue = fibonacci(index - 1) + fibonacci(index - 2);
 			dataStorage.put(index, newValue);
@@ -42,6 +34,6 @@ public class FibonacciMemorization
 	{
 		FibonacciMemorization fibonacciMemorization = new FibonacciMemorization();
 
-		System.out.println(fibonacciMemorization.fibonacci(6));
+		System.out.println(fibonacciMemorization.fibonacci(60));
 	}
 }
