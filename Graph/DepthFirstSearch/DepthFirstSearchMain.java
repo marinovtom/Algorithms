@@ -49,10 +49,40 @@ class Node
 
 class DepthFirstSearch
 {
-	// TODO
 	public boolean findNode(Node startNode, Node endNode)
 	{
-		return true;
+		Stack<Node> nodeStack = new Stack<>();
+		nodeStack.add(startNode);
+
+		while(!nodeStack.isEmpty())
+		{
+			Node currentNode = nodeStack.pop();
+			if(currentNode.getIsVisited())
+			{
+				continue;
+			}
+
+			if(currentNode.getNodeValue() == endNode.getNodeValue())
+			{
+				System.out.println("End node found!");
+				System.out.println(endNode.getNodeValue());
+
+				return true;
+			}
+
+			ArrayList<Node> currentChildNodes = currentNode.getChildNodes();
+			if(currentChildNodes.isEmpty())
+			{
+				continue;
+			}
+
+			nodeStack.addAll(currentChildNodes);
+			currentNode.setIsVisited(true);
+		}
+
+		System.out.println("End node NOT found!");
+
+		return false;
 	}
 
 	public void traverse(Node startNode)
@@ -108,6 +138,7 @@ class DepthFirstSearchMain
 
 		DepthFirstSearch depthFirstSearch = new DepthFirstSearch();
 		System.out.println("DepthFirstSearch traversal of above graph: ");
-		depthFirstSearch.traverse(node0);
+		//depthFirstSearch.traverse(node0);
+		depthFirstSearch.findNode(node0, node7);
 	}
 }
